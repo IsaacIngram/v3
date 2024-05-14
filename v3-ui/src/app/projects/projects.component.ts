@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {NgForOf} from "@angular/common";
+import {Project} from "../Project";
 
 @Component({
   selector: 'app-projects',
@@ -11,13 +12,28 @@ import {NgForOf} from "@angular/common";
   styleUrl: './projects.component.css'
 })
 export class ProjectsComponent {
-  projects: String[] = []
+
+  projects: Project[] = []
 
   constructor(
   ) {
   }
 
   ngOnInit(): void {
-    this.projects = ["Project 1", "Project 2"]
+    this.getProjects()
   }
+
+  getProjects(): void {
+    const mockProject1: Project = {
+      id: 1,
+      name: "Project 1",
+    };
+    this.projects.push(mockProject1)
+    const mockProject2: Project = {
+      id: 2,
+      name: "Project 2",
+    };
+    this.projects.push(mockProject2)
+  }
+
 }
