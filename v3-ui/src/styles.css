@@ -21,3 +21,7 @@
 .color_white {
   color: #f6f7f8
 }
+
+.link {
+  text-decoration: underline;
+}
