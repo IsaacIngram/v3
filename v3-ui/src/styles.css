@@ -2,6 +2,12 @@
   font-family: monospace;
 }
 
+.inline-element {
+  display: inline-block;
+  margin-right: 10px; /* Adjust as needed for spacing */
+}
+
+
 .color_red {
   color: #cf4740
 }
