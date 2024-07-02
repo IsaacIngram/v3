@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {NgForOf} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
 import {Project} from "../Project";
 import {RouterLink} from "@angular/router";
 
@@ -8,17 +8,19 @@ import {RouterLink} from "@angular/router";
   standalone: true,
   imports: [
     NgForOf,
-    RouterLink
+    RouterLink,
+    NgIf
   ],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.css'
 })
 export class ProjectsComponent {
 
-  projects: Project[] = []
+  displayed_projects: Project[] = []
+  all_projects: Project[] = []
+  featured_projects: Project[] = []
 
   showAll: boolean = false
-  showText: string = "View All"
 
   constructor(
   ) {
@@ -35,23 +37,26 @@ export class ProjectsComponent {
       thumbnail: "test",
       description: "A new type of vending machine that utilizes computer vision and load cells to make decisions.",
     };
-    this.projects.push(mockProject1)
+    this.all_projects.push(mockProject1)
+    this.featured_projects.push(mockProject1)
     const mockProject2: Project = {
       id: 2,
       name: "Sprout Chaperone",
       thumbnail: "test",
       description: "An electronic moisture monitor for plants.",
     };
-    this.projects.push(mockProject2)
+    this.all_projects.push(mockProject2)
+    this.displayed_projects = this.featured_projects
   }
 
   toggleViewAllProjects(): void {
     if(this.showAll) {
       this.showAll = false;
-      this.showText = "View All";
+      this.displayed_projects = this.featured_projects;
     } else {
       this.showAll = true;
-      this.showText = "View Less"
+      this.displayed_projects = this.all_projects;
+
     }
   }
 

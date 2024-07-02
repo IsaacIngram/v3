@@ -1,8 +1,12 @@
-<div>
-  <h2 class="inline-element">Projects</h2>
-  <p class="inline-element"><a class="link color_blue" (click)="toggleViewAllProjects()">>{{this.showText}}</a></p>
+<div *ngIf="!showAll">
+  <h2 class="inline-element">Featured Projects</h2>
+  <p class="inline-element"><a class="link color_blue" (click)="toggleViewAllProjects()">>View All</a></p>
 </div>
-<li *ngFor="let project of projects">
+<div *ngIf="showAll">
+  <h2 class="inline-element">All Projects</h2>
+  <p class="inline-element"><a class="link color_blue" (click)="toggleViewAllProjects()">>View Less</a></p>
+</div>
+<li *ngFor="let project of displayed_projects">
   <div>
     <h3>{{project.id}}: {{project.name}}</h3>
     <div id="project_child">
