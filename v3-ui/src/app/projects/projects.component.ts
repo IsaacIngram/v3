@@ -17,6 +17,9 @@ export class ProjectsComponent {
 
   projects: Project[] = []
 
+  showAll: boolean = false
+  showText: string = "View All"
+
   constructor(
   ) {
   }
@@ -40,6 +43,16 @@ export class ProjectsComponent {
       description: "An electronic moisture monitor for plants.",
     };
     this.projects.push(mockProject2)
+  }
+
+  toggleViewAllProjects(): void {
+    if(this.showAll) {
+      this.showAll = false;
+      this.showText = "View All";
+    } else {
+      this.showAll = true;
+      this.showText = "View Less"
+    }
   }
 
 }

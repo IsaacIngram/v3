@@ -1,6 +1,6 @@
 <div>
   <h2 class="inline-element">Projects</h2>
-  <p class="inline-element"><a class="link color_blue" routerLink="/">>View All</a></p>
+  <p class="inline-element"><a class="link color_blue" (click)="toggleViewAllProjects()">>{{this.showText}}</a></p>
 </div>
 <li *ngFor="let project of projects">
   <div>
