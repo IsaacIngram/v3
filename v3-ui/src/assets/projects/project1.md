@@ -1,4 +1,3 @@
-Hello, **project** 1!!
+# Summer Orienteering
 
-# Test Title
-
+I hate putting class projects here but this one was too cool not to share.

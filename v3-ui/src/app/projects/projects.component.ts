@@ -51,21 +51,21 @@ export class ProjectsComponent {
     }
     this.all_projects.push(project1)
 
-    const project20: Project = {
-      id: 20,
+    const project2: Project = {
+      id: 2,
       name: "Sprout Chaperone",
       thumbnail: "test",
       description: "An electronic moisture monitor for plants.",
     };
-    this.all_projects.push(project20)
+    this.all_projects.push(project2)
 
-    const project21: Project = {
-      id: 21,
+    const project3: Project = {
+      id: 3,
       name: "Rapid React Robot",
       thumbnail: "test",
       description: "FIRST Robotics Competition robot equipped with many sensors to enable automated targeting, localization, and safety features.",
     };
-    this.all_projects.push(project21)
+    this.all_projects.push(project3)
 
     // Display featured projects
     this.displayed_projects = this.featured_projects
