@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, RouterLink} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {MarkdownComponent} from "ngx-markdown";
 import {NgIf} from "@angular/common";
@@ -9,7 +9,8 @@ import {NgIf} from "@angular/common";
   standalone: true,
   imports: [
     MarkdownComponent,
-    NgIf
+    NgIf,
+    RouterLink
   ],
   templateUrl: './project-detail.component.html',
   styleUrl: './project-detail.component.css'
