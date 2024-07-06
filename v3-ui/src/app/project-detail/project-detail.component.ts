@@ -30,7 +30,7 @@ export class ProjectDetailComponent implements OnInit {
 
   loadProjectContent(): void {
     const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
-    this.http.get(`assets/projects/project${id}.md`, {responseType: 'text'})
+    this.http.get(`assets/projects/project${id}/project${id}.md`, {responseType: 'text'})
       .subscribe(data => {
         this.content = data;
       })

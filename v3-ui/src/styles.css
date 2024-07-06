@@ -28,6 +28,26 @@ app-root {
   margin-right: 10px; /* Adjust as needed for spacing */
 }
 
+.two-column-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.two-column-container .text-column {
+  flex: 1;
+  padding: 1vb;
+}
+
+.two-column-container .image-column {
+  flex: 1;
+  padding: 1vb;
+}
+
+.two-column-container img {
+  max-width: 100%;
+  height: auto;
+}
 
 .color_red {
   color: #cf4740
