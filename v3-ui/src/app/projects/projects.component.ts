@@ -50,6 +50,7 @@ export class ProjectsComponent {
       description: "A path finding tool for 3D maps with variable speeds."
     }
     this.all_projects.push(project1)
+    this.featured_projects.push(project1)
 
     const project2: Project = {
       id: 2,
