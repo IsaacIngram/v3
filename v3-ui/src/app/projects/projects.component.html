@@ -6,7 +6,7 @@
   <h2 class="inline-element">All Projects</h2>
   <p class="inline-element"><a class="link color_blue" (click)="toggleViewAllProjects()">^View Less</a></p>
 </div>
-<li *ngFor="let project of displayed_projects">
+<li *ngFor="let project of displayed_projects" id="projects_list">
   <div>
     <h3>{{project.id}}: {{project.name}}</h3>
     <div id="project_child">

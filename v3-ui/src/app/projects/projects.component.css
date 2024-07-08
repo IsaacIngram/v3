@@ -1,4 +1,5 @@
 #projects_list {
+  list-style-type: none;
 }
 
 #project_child {
