@@ -5,7 +5,7 @@ In the sport of [orienteering](https://en.wikipedia.org/wiki/Orienteering), you 
 In this lab, our goal was to create an algorithm to determine the best path between a list of coordinates given your ability to traverse different types of terrain.
 
 ![](assets/projects/project1/animated_terrain-EricDudley.gif)
-#### Animated Terrain Example (Credit: Eric Dudley)
+#### Image: Animated Terrain Example (Credit: Eric Dudley)
 
 ## The Lab
 The goal of this lab was to calculate the total distance traveled in meters given the **quickest** (not shortest) path through terrain. The following information was provided::
@@ -24,7 +24,7 @@ When calculating the time to travel between two coordinates, the speed at which 
 
 ![](assets/projects/project1/output_terrain.png)
 
-#### Output of Full Test Case
+#### Image: Output of Full Test Case
 
 The full test case used the 395x500 image above (197,500 coordinates) and the path contained 19 waypoints. The total distance traveled for the quickest path was 6746.7468m, and the program's runtime for this case was 0.29 seconds. This includes the time for reading the input files and generating the output image. The purple path in the image represents the fastest path found by the algorithm, which is guaranteed to be the fastest path with the provided speeds.
 
