@@ -6,5 +6,5 @@ import {ResumeComponent} from "./resume/resume.component";
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'project/:id', component: ProjectDetailComponent },
-  { path: 'resume', component: ResumeComponent }
+  { path: 'resume', component: ResumeComponent, data: { hideFooter: true }}
 ];

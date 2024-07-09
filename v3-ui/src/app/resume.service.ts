@@ -6,4 +6,9 @@ import { Injectable } from '@angular/core';
 export class ResumeService {
 
   constructor() { }
+
+  getResumeUrl(): string {
+    return 'assets/resume/resume.pdf'
+  }
+
 }
