@@ -72,3 +72,7 @@ app-root {
 .link {
   text-decoration: underline;
 }
+
+.copyright {
+  margin-top: 3vh;
+}
