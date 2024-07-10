@@ -47,7 +47,7 @@ export class ProjectsComponent {
       id: 1,
       name: "Summer Orienteering (Lab for CSCI-331: Intro to AI)",
       thumbnail: "test",
-      description: "A path finding tool for 3D maps with variable speeds."
+      description: "A 3D path finding program to assist in planning for an orienteering adventure."
     }
     this.all_projects.push(project1)
     this.featured_projects.push(project1)
