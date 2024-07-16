@@ -44,3 +44,4 @@ Some ideas are:
 - Reading terrain from 3D files (obj, xyz, stl) or traditional [orienteering maps](https://en.wikipedia.org/wiki/Orienteering_map)
 - Track users throughout their journey and use time data to adjust speeds for predicting future paths
 - Generate multiple paths based on other parameters (eg. specific difficulty)
+- 3D Visualizer. View your terrain and the fastest path in 3 dimensions.
