@@ -36,7 +36,7 @@ export class ProjectsComponent {
 
     const project0: Project = {
       id: 0,
-      name: "Bits N Bytes",
+      name: "Bits 'n Bytes",
       thumbnail: "test",
       description: "A new type of vending machine that utilizes computer vision and load cells to make decisions.",
     };
