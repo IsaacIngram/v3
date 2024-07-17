@@ -12,7 +12,7 @@ import {NgIf} from "@angular/common";
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'Isaac Ingram Dev';
+  title = 'Isaac Ingram';
 
   showFooter: boolean = true;
 
