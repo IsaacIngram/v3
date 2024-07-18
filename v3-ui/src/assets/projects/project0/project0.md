@@ -34,23 +34,27 @@ For communication, the Raspberry Pi hosts the MQTT server and acts as a client v
 
 The UI runs within multiple threads and utilizes state machines and critical regions when necessary to ensure safe operation. If for some reason the UI were to crash, the OS is programmed to immediately restart it. The UI is written in Python and uses a UI framework called Kivy to handle screens and render buttons and images.
 
+### Vision
+There are two cameras in the cabinet that can see what items you take from the shelves. The camera feeds are being processed by a vision pipeline to identify different classes of objects, such as a pouch, a box, or a bottle. We are still tuning this pipeline, but the goal is to cross-reference vision data with other sensor inputs to have the upmost accuracy when determining what items were grabbed. In the future, we hope to train the classifier well enough to be able to identify specific items instead of just vision classes (eg. "Dr Pepper" instead of "bottle", "Doritos Nacho Cheese" instead of "pouch", and "tampons" instead of "box").
+
 ### Database
 We use a simple SQL database with tables for product information and user information. HTTP requests are made to quickly and efficiently get data about products, or to look up a user based on their RFID token. For security, we use authentication headers.
 
 ## Addressing Problems
 
 ### Leaving Doors Open
-All things grabbed while the doors are open (transaction still in progress) are linked to your account and you pay for them. No exceptions (unless reviewed and it is obviously a computer error)
+What happens if a user doesn't close the doors when they are done selecting items? The transaction is in progress while the doors are open. Until they are closed, all items grabbed are linked to your account and you will pay for them.
 
 ### Theft
-Locking mechanism (stays locked even when unplugged)
-Cameras are used so we just have them record and we can identify criminals
+The doors are locked with strong latches that stay locked even when the machine is unplugged. Cameras are also in use and are constantly recording, so criminals can be caught and identified if they decide to try and saw through the machine.
 
-### Incorrect charging (people charged for stuff they didn't take)
+### Charging for Items Not Grabbed
+If a user reports that they were charged for items they didn't grab, the camera feed can be reviewed to see if it was truly a computer error.
 
-## Possible future additions
-- Internet connected so you always know what is in stock and where (no guesswork)
-- Can "reserve" items (idk how this would work at all)
-- In-depth admin page for stock control, rearranging stock, etc.
-- Start UI where it left off if system crashes for security (eg. user logged in... what if it crashes when a user is logged in)
-- Motion sensors to detect people trying to mess with the machine (if it moves while you're logged in, log it with your account)
+## Ideas for the Future
+Bits 'n Bytes is in development, so here are some ideas that we might decide to implement:
+- An online portal where you can view what is in stock to take the guesswork out of going to the machine.
+- An in-depth admin page for modifying items that are stocked, arranging shelves digitally, and viewing transactions (receipts and recordings).
+- Start the UI where it left off in case the system crashes (eg if in the middle of a transaction)
+- Motion sensors to detect people trying to mess with the machine
+
