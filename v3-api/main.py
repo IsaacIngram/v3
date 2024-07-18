@@ -24,7 +24,8 @@ def get_projects():
     Handle request to GET all projects
     :return:
     """
-    return jsonify()
+    projects = project_dao.get_all_projects()
+    return jsonify(projects)
 
 
 @app.route('/projects/<int:project_id>', methods=['GET'])
@@ -34,11 +35,11 @@ def get_project(project_id):
     :return:
     """
     # Find project with this ID
-    project = next((proj for proj in projects if proj['id'] == project_id), None)
+    project = project_dao.get_project_by_id(project_id)
     if project is None:
         abort(404, description="Project not found")
     else:
-        return jsonify(project)
+        return jsonify(project.to_dict())
 
 
 if __name__ == '__main__':
