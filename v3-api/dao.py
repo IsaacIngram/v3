@@ -9,10 +9,7 @@
 ###############################################################################
 from typing import List
 from datatypes import Project
-
-projects_i = [
-    {"id": 0, "name": "Test", "thumbnail": "none", "description": "Cool project!!"}
-]
+import json
 
 
 class ProjectDAO:
@@ -21,14 +18,34 @@ class ProjectDAO:
     """
 
     _projects: List[Project]
+    _datafile_path: str
 
     def __init__(self, file_path: str):
         """
         Initialize this project DAO.
         :param file_path: Path to the projects JSON file.
         """
+        # Set members
         self._projects = list()
-        pass
+        self._datafile_path = file_path
+        # Read the JSON file
+        data: dict
+        with open(file_path, 'r') as file:
+            data = json.load(file)
+        # Iterate through all objects in JSON
+        for raw_project in data:
+            # Make sure all expected fields are present
+            if (
+                    'id' in raw_project and 'name' in raw_project and
+                    'thumbnail' in raw_project and 'description' in raw_project
+            ):
+                # Create new Project object and add to list of projects
+                self._projects.append(Project(
+                    raw_project['id'],
+                    raw_project['name'],
+                    raw_project['thumbnail'],
+                    raw_project['description']
+                ))
 
     def get_all_projects(self) -> List[Project]:
         """
@@ -61,3 +78,11 @@ class ProjectDAO:
         :param project_id: id of the project to delete
         :return: The project that was deleted if successful, None otherwise.
         """
+
+
+def main():
+    dao = ProjectDAO("./data/projects.json")
+
+
+if __name__ == "__main__":
+    main()
