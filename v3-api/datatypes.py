@@ -17,6 +17,12 @@ class Project:
     thumbnail: str
     description: str
 
+    def __init__(self, proj_id: int, name: str, thumbnail: str, description: str):
+        self.id = proj_id
+        self.name = name
+        self.thumbnail = thumbnail
+        self.description = description
+
     def to_dict(self):
         """
         Convert project to a dictionary. This should be called within "jsonify"
