@@ -28,9 +28,14 @@ class ProjectDAO:
         # Set members
         self._projects = list()
         self._datafile_path = file_path
-        # Read the JSON file
+        self._load()
+
+    def _load(self):
+        """
+        Load the projects from the JSON file
+        """
         data: dict
-        with open(file_path, 'r') as file:
+        with open(self._datafile_path, 'r') as file:
             data = json.load(file)
         # Iterate through all objects in JSON
         for raw_project in data:
@@ -47,6 +52,14 @@ class ProjectDAO:
                     raw_project['description']
                 ))
 
+    def _save(self):
+        """
+        Save the current projects list to the JSON
+        :return:
+        """
+        with open(self._datafile_path, 'w') as file:
+            json.dump(self._projects, file)
+
     def get_all_projects(self) -> List[Project]:
         """
         Get all projects.
@@ -62,15 +75,24 @@ class ProjectDAO:
         """
         return next((proj for proj in self._projects if proj.id == project_id), None)
 
-    def create_project(self, project: Project) -> Project | None:
+    def create_project(self, in_project: Project) -> Project | None:
         """
         Create a project
-        :param project: The project to be created. The id is arbitrary as they
+        :param in_project: The project to be created. The id is arbitrary as they
         are automatically assigned in this function.
         :return: The project if it was created successfully, None otherwise.
         """
-        # TODO implement
-        pass
+        new_id = 0
+        # Find the ID that is one above the highest existing project ID
+        for project in self._projects:
+            if project.id >= new_id:
+                new_id = project.id + 1
+        # Create new project
+        new_project = Project(new_id, in_project.name, in_project.thumbnail, in_project.description)
+        # Add it to the projects list and save it to the JSON
+        self._projects.append(new_project)
+        self._save()
+        return new_project
 
     def delete_project(self, project_id: int) -> Project | None:
         """
@@ -78,6 +100,12 @@ class ProjectDAO:
         :param project_id: id of the project to delete
         :return: The project that was deleted if successful, None otherwise.
         """
+        for project in self._projects:
+            if project.id == project_id:
+                self._projects.remove(project)
+                self._save()
+                return project
+        return None
 
 
 def main():
