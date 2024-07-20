@@ -25,8 +25,10 @@ def get_projects():
     :return:
     """
     projects = project_dao.get_all_projects()
-    return jsonify(projects)
-
+    projects_to_json = list()
+    for project in projects:
+        projects_to_json.append(project.to_dict())
+    return jsonify(projects_to_json)
 
 @app.route('/projects/<int:project_id>', methods=['GET'])
 def get_project(project_id):

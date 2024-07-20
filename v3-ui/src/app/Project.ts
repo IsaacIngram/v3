@@ -3,4 +3,5 @@ export interface Project {
   name: string;
   thumbnail: string;
   description: string;
+  featured: boolean;
 }

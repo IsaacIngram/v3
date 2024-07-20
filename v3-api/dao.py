@@ -43,13 +43,15 @@ class ProjectDAO:
             if (
                     'id' in raw_project and 'name' in raw_project and
                     'thumbnail' in raw_project and 'description' in raw_project
+                    and 'featured' in raw_project
             ):
                 # Create new Project object and add to list of projects
                 self._projects.append(Project(
                     raw_project['id'],
                     raw_project['name'],
                     raw_project['thumbnail'],
-                    raw_project['description']
+                    raw_project['description'],
+                    raw_project['featured']
                 ))
 
     def _save(self):
@@ -88,7 +90,7 @@ class ProjectDAO:
             if project.id >= new_id:
                 new_id = project.id + 1
         # Create new project
-        new_project = Project(new_id, in_project.name, in_project.thumbnail, in_project.description)
+        new_project = Project(new_id, in_project.name, in_project.thumbnail, in_project.description, in_project.featured)
         # Add it to the projects list and save it to the JSON
         self._projects.append(new_project)
         self._save()

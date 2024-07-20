@@ -16,12 +16,14 @@ class Project:
     name: str
     thumbnail: str
     description: str
+    featured: bool
 
-    def __init__(self, proj_id: int, name: str, thumbnail: str, description: str):
+    def __init__(self, proj_id: int, name: str, thumbnail: str, description: str, featured: bool):
         self.id = proj_id
         self.name = name
         self.thumbnail = thumbnail
         self.description = description
+        self.featured = featured
 
     def to_dict(self):
         """
@@ -33,5 +35,6 @@ class Project:
             "id": self.id,
             "name": self.name,
             "thumbnail": self.thumbnail,
-            "description": self.description
+            "description": self.description,
+            "featured": self.featured
         }
