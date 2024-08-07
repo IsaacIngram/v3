@@ -9,7 +9,7 @@ import {Project} from "./Project";
 export class ProjectService {
 
   // URL for web API
-  private projectEndpoint: string = 'http://127.0.0.1:5000/'
+  private projectEndpoint: string = 'localhost'
 
   // Use JSON content type
   httpOptions = {
@@ -21,7 +21,7 @@ export class ProjectService {
   ) { }
 
   getProjects(): Observable<Project[]> {
-    const url = `${this.projectEndpoint}projects`
+    const url = `${this.projectEndpoint}projects/`
     return this.http.get<Project[]>(url).pipe(
         tap(_ => this.log('fetched projects')),
         catchError(this.handleError<Project[]>('getProjects', []))
@@ -29,7 +29,7 @@ export class ProjectService {
   }
 
   getProject(id: number): Observable<Project> {
-    const url = `${this.projectEndpoint}projects/${id}`;
+    const url = `${this.projectEndpoint}projects/${id}/`;
     return this.http.get<Project>(url).pipe(
       tap(_ => this.log(`fetched project id=${id}`)),
       catchError(this.handleError<Project>(`getProject id=${id}`))
