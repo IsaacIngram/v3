@@ -9,7 +9,7 @@ import {Project} from "./Project";
 export class ProjectService {
 
   // URL for web API
-  private projectEndpoint: string = 'localhost'
+  private projectEndpoint: string = 'api/'
 
   // Use JSON content type
   httpOptions = {
