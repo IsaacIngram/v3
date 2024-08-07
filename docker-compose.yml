@@ -4,6 +4,8 @@ services:
     build:
       context: ./v3-ui
     container_name: frontend
+    volumes:
+      - "./nginx.conf:/etc/nginx/nginx.conf"
     ports:
       - "80:80"
     networks:
