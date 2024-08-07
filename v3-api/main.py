@@ -13,10 +13,6 @@ from flask import Flask, abort, jsonify
 from dao import ProjectDAO
 from os import environ
 
-CRT_FILE = environ.get("CRT_FILE", None)
-KEY_FILE = environ.get("KEY_FILE", None)
-DEBUG = environ.get("DEBUG", False)
-
 app = Flask(__name__)
 project_dao = ProjectDAO('data/projects.json')
 
@@ -49,5 +45,4 @@ def get_project(project_id):
 
 
 if __name__ == '__main__':
-    context = (CRT_FILE, KEY_FILE)
-    app.run(debug=DEBUG, ssl_context=context)
+    app.run()
