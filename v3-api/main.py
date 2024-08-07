@@ -11,14 +11,17 @@
 
 from flask import Flask, abort, jsonify
 from dao import ProjectDAO
+from os import environ
+
+CRT_FILE = environ.get("CRT_FILE", None)
+KEY_FILE = environ.get("KEY_FILE", None)
+DEBUG = environ.get("DEBUG", False)
 
 app = Flask(__name__)
-
-
 project_dao = ProjectDAO('data/projects.json')
 
 
-@app.route('/projects', methods=['GET'])
+@app.route('/projects/', methods=['GET'])
 def get_projects():
     """
     Handle request to GET all projects
@@ -30,7 +33,8 @@ def get_projects():
         projects_to_json.append(project.to_dict())
     return jsonify(projects_to_json)
 
-@app.route('/projects/<int:project_id>', methods=['GET'])
+
+@app.route('/projects/<int:project_id>/', methods=['GET'])
 def get_project(project_id):
     """
     Handle request to GET a project
@@ -45,4 +49,5 @@ def get_project(project_id):
 
 
 if __name__ == '__main__':
-    app.run()
+    context = (CRT_FILE, KEY_FILE)
+    app.run(debug=DEBUG, ssl_context=context)
