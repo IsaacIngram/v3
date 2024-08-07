@@ -51,10 +51,11 @@ export class ProjectsComponent {
     if(this.showAll) {
       this.showAll = false;
       this.displayed_projects = this.featured_projects;
+      console.log("ProjectsComponent: Show featured projects")
     } else {
       this.showAll = true;
       this.displayed_projects = this.all_projects;
-
+      console.log("ProjectsComponent: Show all projects")
     }
   }
 
