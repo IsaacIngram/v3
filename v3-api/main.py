@@ -15,9 +15,10 @@ from os import environ
 
 app = Flask(__name__)
 project_dao = ProjectDAO('data/projects.json')
+ROUTE_PREFIX = "/api"
 
 
-@app.route('/projects/', methods=['GET'])
+@app.route(f'{ROUTE_PREFIX}/projects/', methods=['GET'])
 def get_projects():
     """
     Handle request to GET all projects
@@ -30,7 +31,7 @@ def get_projects():
     return jsonify(projects_to_json)
 
 
-@app.route('/projects/<int:project_id>/', methods=['GET'])
+@app.route(f'{ROUTE_PREFIX}/projects/<int:project_id>/', methods=['GET'])
 def get_project(project_id):
     """
     Handle request to GET a project
@@ -45,4 +46,4 @@ def get_project(project_id):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host="0.0.0.0")
