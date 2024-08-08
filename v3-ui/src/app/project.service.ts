@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {catchError, Observable, of, tap} from "rxjs";
+import {catchError, Observable, of, tap, throwError} from "rxjs";
 import {Project} from "./Project";
 
 @Injectable({
@@ -42,9 +42,8 @@ export class ProjectService {
 
   private handleError<T>(operation: string = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      // Log error to console
-      console.error(error);
-      return of(result as T);
+      console.error(`${operation} failed: ${error.message}`);
+      return throwError(() => new Error(`${operation} failed: ${error.message}`));
     }
   }
 

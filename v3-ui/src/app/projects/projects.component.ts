@@ -20,6 +20,7 @@ export class ProjectsComponent {
   displayed_projects: Project[] = []
   all_projects: Project[] = []
   featured_projects: Project[] = []
+  error_message: string | null = null
 
   showAll: boolean = false
 
@@ -34,13 +35,18 @@ export class ProjectsComponent {
 
   getProjects(): void {
 
-    this.projectService.getProjects().subscribe(projects => {
+    this.projectService.getProjects().subscribe({
+      next: projects => {
         this.all_projects = projects;
         for (let project of projects) {
-          if(project.featured) {
+          if (project.featured) {
             this.featured_projects.push(project)
           }
         }
+      },
+      error: err => {
+        this.error_message = "Error"
+      }
     })
 
     // Display featured projects
