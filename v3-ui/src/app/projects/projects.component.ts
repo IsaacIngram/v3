@@ -35,23 +35,58 @@ export class ProjectsComponent {
 
   getProjects(): void {
 
-    this.projectService.getProjects().subscribe({
-      next: projects => {
-        this.all_projects = projects;
-        for (let project of projects) {
-          if (project.featured) {
-            this.featured_projects.push(project)
-          }
-        }
-      },
-      error: err => {
-        this.error_message = "Error"
+    const projectBitsNBytes: Project = {
+      id: 0,
+      name: "Bits 'n Bytes",
+      thumbnail: "",
+      description: "A new type of vending machine that utilizes computer vision and load cells to make decisions.",
+      featured: true
+    }
+    this.all_projects.push(projectBitsNBytes)
+
+    const projectSummerOrienteering: Project = {
+      id: 1,
+      name: "Summer Orienteering",
+      thumbnail: "",
+      description: "A 3D path finding program to assist in planning for an orienteering adventure.",
+      featured: true
+    }
+    this.all_projects.push(projectSummerOrienteering)
+
+    const projectSproutChaperone: Project = {
+      id: 1,
+      name: "Sprout Chaperone",
+      thumbnail: "",
+      description: "An electronic moisture monitor for plants.",
+      featured: true
+    }
+    this.all_projects.push(projectSproutChaperone)
+
+    for (let i = 0; i < this.all_projects.length; i++) {
+      if (this.all_projects[i].featured) {
+        this.featured_projects.push(this.all_projects[i])
       }
-    })
+
+    }
+
+    // this.projectService.getProjects().subscribe({
+    //   next: projects => {
+    //     this.all_projects = projects;
+    //     for (let project of projects) {
+    //       if (project.featured) {
+    //         this.featured_projects.push(project)
+    //       }
+    //     }
+    //   },
+    //   error: err => {
+    //     this.error_message = "Error"
+    //   }
+    // })
 
     // Display featured projects
     this.displayed_projects = this.featured_projects
   }
+
 
   toggleViewAllProjects(): void {
     if(this.showAll) {
