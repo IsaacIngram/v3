@@ -54,7 +54,7 @@ export class ProjectsComponent {
     this.all_projects.push(projectSummerOrienteering)
 
     const projectSproutChaperone: Project = {
-      id: 1,
+      id: 2,
       name: "Sprout Chaperone",
       thumbnail: "",
       description: "An electronic moisture monitor for plants.",
