@@ -1,27 +1,27 @@
-# Bits 'n Bytes - Smart Vending Cabinet
+# Bits n' Bytes - Smart Vending Cabinet
 
 Have you ever tried to use a vending machine but been disappointed when the machine was broken, only accepted quarters, or was out of the snack you wanted? Or have you had an experience where everything seemed to be going well, but then your oh-so-needed snack got stuck? This is not at all uncommon, and vending machines have seen very little change to combat these issues, even in recent years.
 
-Disappointed by the current state of vending machines, my friends and I decided to find a solution. Our idea utilizes computer vision, weight sensors, and complex algorithms to make decisions. We call it Bit's N Bytes.
+Disappointed by the current state of vending machines, my friends and I decided to find a solution. Our idea utilizes computer vision, weight sensors, and complex algorithms to make decisions. We call it Bits n' Bytes.
 
 ![](/assets/projects/project0/bitsnbytes-logo-lockup.png)
 
-#### Image: Bits 'n Bytes Logo
+#### Image: Bits n' Bytes Logo
 
 ## Operational Overview
 
-Bits 'n Bytes was designed to be easy to use despite the complex technology that makes it work. We wanted it to be possible for users to go through a transaction without ever having to touch or use a screen, although there is one if you need it.
+Bits n' Bytes was designed to be easy to use despite the complex technology that makes it work. We wanted it to be possible for users to go through a transaction without ever having to touch or use a screen, although there is one if you need it.
 
-This is the flow of a typical transaction with Bits 'n Bytes:
+This is the flow of a typical transaction with Bits n' Bytes:
 1. The user begins by holding their RFID card or token next to the reader. Once it is read, the doors unlock and the transaction begins.
 2. The user opens the doors and picks up whatever products they want. Multiple items can be grabbed or once, or items can even be put back. The cart will be updated in real time.
 3. When the user is finished with their transaction, they close the doors. The doors will lock, the transaction is automatically ended, and your account will be charged for what you picked up.
 
 ## The Screen
 
-When a transaction is in progress, the screen on Bits 'n Bytes displays items in the cart and details about the user's account. When there isn't a tra
+When a transaction is in progress, the screen on Bits n' Bytes displays items in the cart and details about the user's account. When there isn't a tra
 
-Although you can use Bits 'n Bytes without a screen, it is equipped with a touchscreen to display items in your cart and details about your account. It also has an about screen, and "attract" screen, and we'll be adding an admin dashboard that can be used to calibrate sensors.
+Although you can use Bits n' Bytes without a screen, it is equipped with a touchscreen to display items in your cart and details about your account. It also has an about screen, and "attract" screen, and we'll be adding an admin dashboard that can be used to calibrate sensors.
 
 ![](/assets/projects/project0/cabinet_cad_model.png)
 
@@ -47,7 +47,7 @@ There are two cameras in the cabinet that can see what items you take from the s
 
 ### Database
 We use a simple SQL database with tables for product information and user information. HTTP requests are made to get data about products, or to look up a user based on their RFID token. For security, we use authentication headers.
-Among other things, we store nutrition information about our products in the database. One of the downfalls of vending is that it can be difficult to find snacks that meet your nutrition goals. Bits 'n Bytes already addresses this by letting customers grab items to look at the nutrition label before deciding to buy, but we hope to implement more nutrition-based features in the future to bring more awareness to this important topic.
+Among other things, we store nutrition information about our products in the database. One of the downfalls of vending is that it can be difficult to find snacks that meet your nutrition goals. Bits n' Bytes already addresses this by letting customers grab items to look at the nutrition label before deciding to buy, but we hope to implement more nutrition-based features in the future to bring more awareness to this important topic.
 
 ## Addressing Problems
 As with any new technology, there are lots of problems. Some of these we have figured out, and others we have not. This section is kind of a Q and A format.
@@ -65,9 +65,9 @@ A: There are a number of things that we can do to prevent theft, although the ma
 If a user reports that they were charged for items they didn't grab, the camera feed can be reviewed to see if it was truly a computer error, in which case the user would be refunded.
 
 ## Ideas for the Future
-Bits 'n Bytes is in development, so here are some ideas that we might decide to implement:
+Bits n' Bytes is in development, so here are some ideas that we might decide to implement:
 - An online portal where you can view what is in stock to take the guesswork out of going to the machine.
 - An in-depth admin page for modifying items that are stocked, arranging shelves digitally, and viewing transactions (receipts and recordings).
-- Start the UI where it left off in case the system crashes (eg if in the middle of a transaction)
-- Motion sensors to detect people trying to mess with the machine in a nefarious way (IMU)
+- Start the UI where it left off in case the system crashes (eg. in the middle of a transaction).
+- Motion sensors to detect people trying to mess with the machine in a nefarious way (IMU).
 
