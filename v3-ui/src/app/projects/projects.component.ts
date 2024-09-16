@@ -40,7 +40,8 @@ export class ProjectsComponent {
       name: "Bits 'n Bytes",
       thumbnail: "",
       description: "A new type of vending machine that utilizes computer vision and load cells to make decisions.",
-      featured: true
+      featured: true,
+      links: new Map()
     }
     this.all_projects.push(projectBitsNBytes)
 
@@ -49,7 +50,8 @@ export class ProjectsComponent {
       name: "Summer Orienteering",
       thumbnail: "",
       description: "A 3D path finding program to assist in planning for an orienteering adventure.",
-      featured: true
+      featured: true,
+      links: new Map()
     }
     this.all_projects.push(projectSummerOrienteering)
 
@@ -58,7 +60,8 @@ export class ProjectsComponent {
       name: "Sprout Chaperone",
       thumbnail: "",
       description: "An electronic moisture monitor for plants.",
-      featured: true
+      featured: true,
+      links: new Map()
     }
     this.all_projects.push(projectSproutChaperone)
 
@@ -67,7 +70,8 @@ export class ProjectsComponent {
       name: "Rapid React Robot",
       thumbnail: "",
       description: "",
-      featured: false
+      featured: false,
+      links: new Map()
     }
     this.all_projects.push(projectRapidReactRobot)
 

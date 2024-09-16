@@ -4,4 +4,5 @@ export interface Project {
   thumbnail: string;
   description: string;
   featured: boolean;
+  links:  Map<string, string>;
 }
