@@ -62,6 +62,15 @@ export class ProjectsComponent {
     }
     this.all_projects.push(projectSproutChaperone)
 
+    const projectRapidReactRobot: Project = {
+      id: 3,
+      name: "Rapid React Robot",
+      thumbnail: "",
+      description: "",
+      featured: false
+    }
+    this.all_projects.push(projectRapidReactRobot)
+
     for (let i = 0; i < this.all_projects.length; i++) {
       if (this.all_projects[i].featured) {
         this.featured_projects.push(this.all_projects[i])
