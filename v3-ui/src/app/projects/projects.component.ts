@@ -66,7 +66,7 @@ export class ProjectsComponent {
       id: 3,
       name: "Rapid React Robot",
       thumbnail: "",
-      description: "",
+      description: "FIRST Robotics Competition robot that received the Innovation in Control Award.",
       featured: false
     }
     this.all_projects.push(projectRapidReactRobot)
