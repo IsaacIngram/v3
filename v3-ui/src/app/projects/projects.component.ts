@@ -35,8 +35,17 @@ export class ProjectsComponent {
 
   getProjects(): void {
 
+    const projectComputerScienceMouse: Project = {
+      id: 4,
+      name: "Computer Science Mouse",
+      thumbnail: "",
+      description: "An IoT enabled mouse trap to get rid of pests the nerdy way.",
+      featured: true
+    }
+    this.all_projects.push(projectComputerScienceMouse)
+
     const projectBitsNBytes: Project = {
-      id: 0,
+      id: 3,
       name: "Bits 'n Bytes",
       thumbnail: "",
       description: "A new type of vending machine that utilizes computer vision and load cells to make decisions.",
@@ -45,7 +54,7 @@ export class ProjectsComponent {
     this.all_projects.push(projectBitsNBytes)
 
     const projectSummerOrienteering: Project = {
-      id: 1,
+      id: 2,
       name: "Summer Orienteering",
       thumbnail: "",
       description: "A 3D path finding program to assist in planning for an orienteering adventure.",
@@ -54,16 +63,16 @@ export class ProjectsComponent {
     this.all_projects.push(projectSummerOrienteering)
 
     const projectSproutChaperone: Project = {
-      id: 2,
+      id: 1,
       name: "Sprout Chaperone",
       thumbnail: "",
       description: "An electronic moisture monitor for plants.",
-      featured: true
+      featured: false
     }
     this.all_projects.push(projectSproutChaperone)
 
     const projectRapidReactRobot: Project = {
-      id: 3,
+      id: 0,
       name: "Rapid React Robot",
       thumbnail: "",
       description: "FIRST Robotics Competition robot that received the Innovation in Control Award.",

@@ -1,83 +1,38 @@
-# Bits 'n Bytes - Smart Vending Cabinet
+# Rapid React Robot
 
-Have you ever tried to use a vending machine but been disappointed when the machine was broken, only accepted quarters, or was out of the snack you wanted? Or have you had an experience where everything seemed to be going well, but then your oh-so-needed snack got stuck? This is not at all uncommon, and vending machines have seen very little change to combat these issues, even in recent years.
+To compete in the 2022 FIRST Robotics Competition season, Rapid React, my team and I devised some crazy plans. Some of these plans never saw the light of day, but as the lead programmer and captain of my team, I made sure that all of our wildest software dreams came to life.
 
-Disappointed by the current state of vending machines, my friends and I decided to find a solution. Our idea utilizes computer vision, weight sensors, and complex algorithms to make decisions. We call it Bits 'n Bytes.
+## 1. A Brief Backstory
+When I was a freshman in high school, I was inspired by my four years senior [Julian Zanders](https://www.linkedin.com/in/julian-zanders-0b8329201/). Julian was a legendary programmer, and he was the lead programmer when I was a freshman. Under his leadership, my team received multiple control awards in FRC, and it became my goal to be like him. My sophomore and junior year seasons were cancelled due to COVID, so I only had my senior year to make it happen. Come senior year, I had high aspirations and a team that supported my goals. It was go time.
 
-![](/assets/projects/project0/bitsnbytes-logo-lockup.png)
+## 2. Random Software Features
+Enough about my dreams and aspirations, let's talk about what you're here for: cool technology. 
 
-#### Image: Bits 'n Bytes Logo
+The robot we built was called FiaDuo, and it utilized a ton of different sensor and microprocessors to automate everything possible. Our goal was to reduce cycle time, or the time it takes to pick up game items, score them, and repeat. We accomplished this by focusing on a set of features that we called "driver assist", which abstracts all time-consuming tasks away from the driver and allowed the driver to focus on what they do best: driving. In most cases, these features could also be reused for our autonomous programs.
 
-## 1. What is it like to use??
+### 2.1 Robot Localization
+Using motor encoders and vision data, the robot was able to determine where it is on the field. During autonomous, this information was used in addition to robot kinematics to follow paths specified in [PathPlanner](https://pathplanner.dev/home.html). During tele-op, the robot was plotted on a 2D image of the field, allowing the driver to know the robot's location even if it was outside the line of sight.
 
-Bits 'n Bytes was designed to be easy to use despite the complex technology that makes it work. We wanted it to be possible for users to go through a transaction without ever having to touch or use a screen, although there is one if you need it.
+### 2.2 Auto Aim
+Using a [LimeLight](https://limelightvision.io), the robot tracked the tower in the middle of the field, which was always the target of the shooter. The robot constantly adjusted the shooter velocity based on distance from the tower. The camera was also used to center the shooter on the target, naking sure that shots always hit their mark. Because this robot used a [Mecanum drivetrain](https://en.wikipedia.org/wiki/Mecanum_wheel), it was possible to stay angled toward the tower while driving in any direction. This allowed the driver to move away from defense while staying ready to shoot.
 
-This is the flow of a typical transaction with Bits 'n Bytes:
-1. The user begins by holding their RFID card or token next to the reader. Once it is read, the doors unlock and the transaction begins.
-2. The user opens the doors and picks up whatever products they want. Multiple items can be grabbed or once, or items can even be put back. The cart will be updated in real time.
-3. When the user is finished with their transaction, they close the doors. The doors will lock, the transaction is automatically ended, and your account will be charged for what you picked up.
+LEDs on the robot and a large indicator on the driver dashboard showed the driver whether the robot was ready to shoot. "Ready to shoot" is defined as the shooter spinning at the target velocity, and the robot being angled within a threshold of the target. Converting target RPM to motor voltage was done through a feedforward algorithm that was very tightly tuned. If a belt were to come lose, a motor to fail, or the flywheel to completely fall apart, the voltage used would cause the shooter to significantly overshoot at first, and the robot would not register itself as "ready to shoot". Eventually, the PID loop would kick in and adjust the voltage until the target RPM was reached. This allowed FiaDuo to remain competitive even after sustaining an injury.
 
-## 2. Project Status
-This project was conceived as the 2024 [Imagine RIT](https://www.rit.edu/imagine/) submission from Computer Science House. At Imagine, we were able to judge how the public would react to this type of vending machine. We received tons of positive feedback and enthusiasm from parents, children, industry professionals, and our peers.
+### 2.3 Cargo Hound
+Using a Raspberry Pi connected to a Microsoft Life Cam, we were able to track game pieces (also knows as "Cargo") in front of the robot's intake. This was done through a basic vision pipeline that used filtering methods in addition to a small amount of machine learning. We were able to determine the x and y distance of the cargo relative to the robot and plot them on a plane. This was displayed to the driver in the 2D field image in case they didn't have a visual on the cargo. This means that any cargo within sight of the robot was plotted on the 2D map, which is a lot of cargo! More importantly though, a trajectory was generated on the fly and the driver was informed that they robot was ready to "hound" the cargo. If the driver accepted, the robot would intake the cargo automatically.
 
-We have decided to continue working on this project to improve the technology and add more features. I'm very excited to be the leader of this effort, and I ca'nt wait to share our advancements in the future.
+When you combine this with the complex auto-aim system, the driver is put into a situation where all they have to do is drive. This reduced cycle times significantly.
 
+### 2.4 Index System
+Each robot in Rapid React was allowed to hold 2 cargo at once, and holding more came with significant penalties. To make sure that drivers were always aware of the robot's contents, we devised a complex beam-break system. This system operated under the same [block system](https://en.wikipedia.org/wiki/Signalling_block_system) principle used by roller coasters, trains, and other systems. There were two "blocks" within the robot, one for each piece of cargo. This required three beam break sensors. There was another sensor before the intake and another after the shooter, making 5 in total. The intake sensor was used to automatically spit cargo out if too many were in the robot. The shooter sensor was used primarily for autonomous to know the moment that cargo had left the robot.
 
-![](/assets/projects/project0/cabinet_cad_model.png)
+### 2.5 Autonomous Period
+The autonomous period lasted 15 seconds, and we wanted to be able to score 5 cargo within that time frame. That's a pretty tight time window, but we were able to make it happen using the aforementioned systems.
 
-#### Image: 3D Model of Cabinet Without Doors
+An onboard video of our robot completing the 5 ball autonomous can be found on my [Proton Drive](https://drive.proton.me/urls/VHRN0MZ2H4#ZBlKVTP7p3EF).
 
-## 3. Technology Deep Dive
+To meet this tight time frame, the robot had to continue as soon as a cargo had been shot. This was made possible using the beam break sensor in the shooter, as the shooter would shoot until both cargo had left the robot or until a max time was hit, whichever came first. If the cargo was not successfully shot, the robot would take an alternate path to avoid picking up extra and getting penalized.
 
-### 3.1 Screen
-
-When a transaction is in progress, the screen on Bits 'n Bytes displays items in the cart and details about the user's account. When there is'nt a transaction, the screen can be used to read information about the project.
-
-Although you can use Bits 'n Bytes without a screen, it is equipped with a touchscreen to display items in your cart and details about your account. It also has an about screen, and "attract" screen, and we'll be adding an admin dashboard that can be used to calibrate sensors.
-
-### 3.2 Cabinet
-The cabinet contains a NVIDIA Jetson, Raspberry Pi, a number of relays, and two cameras. A variable number of shelves can be placed in the cabinet to hold products of different sizes.
-
-### 3.3 Shelves
-Each shelf has 4 slots, with one item type being allowed per slot. A slot consists of a plate attached to multiple load cells (or "weight sensors"), essentially acting as a scale. To gather data from the slots, each shelf has an ESP32, which wirelessly communicates with the main compute via MQTT. This reduces the number of wires to two per shelf (power and ground), eliminating restrictions due to the number of available IO pins on the main compute.
-
-### 3.4 Main Compute and UI
-The Raspberry Pi that runs the UI is also responsible for gathering sensor data, making requests to the database, and reading RFID tokens. Ultimately, this Pi is responsible for making all decisions related to the cabinet. We run Raspberry Pi OS Lite, an extremely barebones Linux distro, so that critical system resources can be allocated to our software instead of unused system utilities.
-
-For communication, the Raspberry Pi hosts the MQTT server and acts as a client via loopback, allowing the main program logic to communicate with sensors and actuators throughout the cabinet. The communication system was designed with flexibility and security in mind, since shelves can connect with the cabinet at any time. For security, all shelves must be manually encoded with an authentication token.
-
-The UI runs within multiple threads and utilizes state machines and critical regions when necessary to ensure safe operation. If for some reason the UI were to crash, the OS is programmed to immediately restart it. The UI is written in Python and uses a UI framework called Kivy to handle screens and render buttons and images.
-
-### 3.5 Vision
-There are two cameras in the cabinet that can see what items you take from the shelves. The camera feeds are being processed by a vision pipeline to identify different classes of objects, such as a pouch, a box, or a bottle. We are still tuning this pipeline, but the goal is to cross-reference vision data with other sensor inputs to have the utmost accuracy when determining what items were grabbed. In the future, we hope to train the classifier well enough to be able to identify specific items instead of just vision classes (eg. "Dr Pepper" instead of "bottle", "Doritos Nacho Cheese" instead of "pouch", and "tampons" instead of "box").
-
-### 3.6 Database
-We use a simple SQL database with tables for product information and user information. HTTP requests are made to get data about products, or to look up a user based on their RFID token. For security, we use authentication headers.
-Among other things, we store nutrition information about our products in the database. One of the downfalls of vending is that it can be difficult to find snacks that meet your nutrition goals. Bits 'n Bytes already addresses this by letting customers grab items to look at the nutrition label before deciding to buy, but we hope to implement more nutrition-based features in the future to bring more awareness to this important topic.
-
-## 4 Addressing Problems
-As with any new technology, there are lots of problems. Some of these we have figured out, and others we have not. This section is kind of a Q and A format.
-
-### 4.1 Leaving Doors Open
-**Q: What happens if a user does'nt close the doors when they are done selecting items?** 
-A: The transaction is in progress while the doors are open. Until they are closed, all items grabbed are linked to a user's account, and that user will pay for them. It is the user's responsibility to end their transaction.
-
-### 4.2 Theft
-**Q: How do we prevent theft?**
-A: There are a number of things that we can do to prevent theft, although the machine is'nt invincible. We use strong latches for the doors that stay locked even if the machine is unplugged.
-
-### 4.3 Charging for Items Not Grabbed
-**Q: What happens if the machine thinks you grabbed an item you did'nt actually grab?**
-If a user reports that they were charged for items they did'nt grab, the camera feed can be reviewed to see if it was truly a computer error, in which case the user would be refunded.
-
-## 5. Ideas for the Future
-Bits 'n Bytes is in development, so here are some ideas that we might decide to implement:
-- An online portal where you can view what is in stock to take the guesswork out of going to the machine.
-- An in-depth admin page for modifying items that are stocked, arranging shelves digitally, and viewing transactions (receipts and recordings).
-- Start the UI where it left off in case the system crashes (eg. in the middle of a transaction).
-- Motion sensors to detect people trying to mess with the machine in a nefarious way (IMU).
 
 ## Related Links
-[Old UI On GitHub (ComputerScienceHouse/imagine2024-ui)](https://github.com/ComputerScienceHouse/imagine2024-ui)
-
-[New UI on GitHub (ComputerScienceHouse/bits-n-bytes-embedded)](https://github.com/ComputerScienceHouse/bits-n-bytes-embedded)
+[GitHub: CommandoRobotics/FRC_Rapid_React_2022](https://github.com/CommandoRobotics/FRC_Rapid_React_2022)
