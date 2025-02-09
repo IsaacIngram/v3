@@ -4,7 +4,7 @@ Have you ever tried to use a vending machine but been disappointed when the mach
 
 Disappointed by the current state of vending machines, my friends and I decided to find a solution. Our idea utilizes computer vision, weight sensors, and complex algorithms to make decisions. We call it Bits 'n Bytes.
 
-![](/assets/projects/project0/bitsnbytes-logo-lockup.png)
+![](/assets/projects/project3/bitsnbytes-logo-lockup.png)
 
 #### Image: Bits 'n Bytes Logo
 
@@ -23,7 +23,7 @@ This project was conceived as the 2024 [Imagine RIT](https://www.rit.edu/imagine
 We have decided to continue working on this project to improve the technology and add more features. I'm very excited to be the leader of this effort, and I ca'nt wait to share our advancements in the future.
 
 
-![](/assets/projects/project0/cabinet_cad_model.png)
+![](/assets/projects/project3/cabinet_cad_model.png)
 
 #### Image: 3D Model of Cabinet Without Doors
 

@@ -4,7 +4,7 @@
 In the sport of [orienteering](https://en.wikipedia.org/wiki/Orienteering), you are given a map with terrain information, including elevation, contours, and a set of locations to visit. Success requires a combination of athletic and planning skills - a smart competitor who can figure out the best way to traverse the terrain may beat a more athletic competitor who makes poor choices!
 In this lab, we created a path finding algorithm to assist in the planning process.
 
-![](assets/projects/project1/animated_terrain-EricDudley.gif)
+![](assets/projects/project2/animated_terrain-EricDudley.gif)
 #### Image: Animated Terrain Example (Credit: Eric Dudley)
 
 ## The Lab
@@ -27,7 +27,7 @@ When calculating the time to travel between two coordinates, the speed at which 
 
 ## Results
 
-![](assets/projects/project1/output_terrain.png)
+![](assets/projects/project2/output_terrain.png)
 
 #### Image: Output of Full Test Case
 

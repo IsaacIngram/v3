@@ -2,7 +2,7 @@
 
 Sprout Chaperone is an electronic moisture monitor for plants. It consists of an Arduino, [moisture sensor](https://www.adafruit.com/product/4026), and a small display. 
 
-<img src="assets/projects/project2/sprout_chaperone_on_plant.png" width="500vb"></img>
+<img src="assets/projects/project1/sprout_chaperone_on_plant.png" width="500vb"></img>
 
 #### Image: Sprout Chaperone attached to a plant
 
