@@ -18,9 +18,7 @@ This is the flow of a typical transaction with Bits 'n Bytes:
 3. When the user is finished with their transaction, they close the doors. The doors will lock, the transaction is automatically ended, and your account will be charged for what you picked up.
 
 ## 2. Project Status
-This project was conceived as the 2024 [Imagine RIT](https://www.rit.edu/imagine/) submission from Computer Science House. At Imagine, we were able to judge how the public would react to this type of vending machine. We received tons of positive feedback and enthusiasm from parents, children, industry professionals, and our peers.
-
-We have decided to continue working on this project to improve the technology and add more features. I'm very excited to be the leader of this effort, and I ca'nt wait to share our advancements in the future.
+This project was conceived as the 2024 [Imagine RIT](https://www.rit.edu/imagine/) submission from Computer Science House. We have since brought it to both ImagineRIT 2024 and ImagineRIT 2025, and we intend to continue improving this project this year.
 
 
 ![](/assets/projects/project3/cabinet_cad_model.png)
@@ -31,25 +29,23 @@ We have decided to continue working on this project to improve the technology an
 
 ### 3.1 Screen
 
-When a transaction is in progress, the screen on Bits 'n Bytes displays items in the cart and details about the user's account. When there is'nt a transaction, the screen can be used to read information about the project.
-
-Although you can use Bits 'n Bytes without a screen, it is equipped with a touchscreen to display items in your cart and details about your account. It also has an about screen, and "attract" screen, and we'll be adding an admin dashboard that can be used to calibrate sensors.
+When a transaction is in progress, the screen on Bits 'n Bytes displays items in the cart and details about the user's account.
 
 ### 3.2 Cabinet
 The cabinet contains a NVIDIA Jetson, Raspberry Pi, a number of relays, and two cameras. A variable number of shelves can be placed in the cabinet to hold products of different sizes.
 
 ### 3.3 Shelves
-Each shelf has 4 slots, with one item type being allowed per slot. A slot consists of a plate attached to multiple load cells (or "weight sensors"), essentially acting as a scale. To gather data from the slots, each shelf has an ESP32, which wirelessly communicates with the main compute via MQTT. This reduces the number of wires to two per shelf (power and ground), eliminating restrictions due to the number of available IO pins on the main compute.
+Each shelf has 4 slots, with one item type being allowed per slot. A slot consists of a plate attached to multiple load cells (or "weight sensors"), essentially acting as a scale. To gather data from the slots, each shelf has an ESP32, which wirelessly communicates with the main compute node via MQTT. This reduces the number of wires to two per shelf (power and ground), eliminating restrictions due to the number of available IO pins on the main compute.
 
 ### 3.4 Main Compute and UI
-The Raspberry Pi that runs the UI is also responsible for gathering sensor data, making requests to the database, and reading RFID tokens. Ultimately, this Pi is responsible for making all decisions related to the cabinet. We run Raspberry Pi OS Lite, an extremely barebones Linux distro, so that critical system resources can be allocated to our software instead of unused system utilities.
+The Raspberry Pi that runs the UI is also responsible for gathering sensor data, making requests to the database, and reading RFID tokens. Ultimately, this Pi is responsible for making all decisions related to the cabinet.
 
 For communication, the Raspberry Pi hosts the MQTT server and acts as a client via loopback, allowing the main program logic to communicate with sensors and actuators throughout the cabinet. The communication system was designed with flexibility and security in mind, since shelves can connect with the cabinet at any time. For security, all shelves must be manually encoded with an authentication token.
 
-The UI runs within multiple threads and utilizes state machines and critical regions when necessary to ensure safe operation. If for some reason the UI were to crash, the OS is programmed to immediately restart it. The UI is written in Python and uses a UI framework called Kivy to handle screens and render buttons and images.
+The UI runs within multiple threads and utilizes state machines and critical regions when necessary to ensure safe operation. If for some reason the UI were to crash, the OS is programmed to immediately restart it. The UI is written in Python and uses a Qt as a UI framework.
 
 ### 3.5 Vision
-There are two cameras in the cabinet that can see what items you take from the shelves. The camera feeds are being processed by a vision pipeline to identify different classes of objects, such as a pouch, a box, or a bottle. We are still tuning this pipeline, but the goal is to cross-reference vision data with other sensor inputs to have the utmost accuracy when determining what items were grabbed. In the future, we hope to train the classifier well enough to be able to identify specific items instead of just vision classes (eg. "Dr Pepper" instead of "bottle", "Doritos Nacho Cheese" instead of "pouch", and "tampons" instead of "box").
+There are two cameras in the cabinet that can see what items you take from the shelves. The camera feeds are being processed by a vision pipeline to identify different types of items that we sell. This model is still in its infancy and can be drastically improved, but we have trained it on a few thousand images that we manually collected and labeled.
 
 ### 3.6 Database
 We use a simple SQL database with tables for product information and user information. HTTP requests are made to get data about products, or to look up a user based on their RFID token. For security, we use authentication headers.
@@ -78,6 +74,4 @@ Bits 'n Bytes is in development, so here are some ideas that we might decide to 
 - Motion sensors to detect people trying to mess with the machine in a nefarious way (IMU).
 
 ## Related Links
-[Old UI On GitHub (ComputerScienceHouse/imagine2024-ui)](https://github.com/ComputerScienceHouse/imagine2024-ui)
-
-[New UI on GitHub (ComputerScienceHouse/bits-n-bytes-embedded)](https://github.com/ComputerScienceHouse/bits-n-bytes-embedded)
+[New embedded code on GitHub (ComputerScienceHouse/bits-n-bytes-embedded)](https://github.com/ComputerScienceHouse/bits-n-bytes-embedded)
