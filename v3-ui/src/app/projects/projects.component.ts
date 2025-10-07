@@ -39,7 +39,7 @@ export class ProjectsComponent {
       id: 4,
       name: "Computer Science Mouse",
       thumbnail: "",
-      description: "An IoT enabled mouse trap to get rid of pests the nerdy way.",
+      description: "An IoT enabled mouse trap to get rid of pests with more complexity (and insight).",
       featured: true
     }
     this.all_projects.push(projectComputerScienceMouse)
